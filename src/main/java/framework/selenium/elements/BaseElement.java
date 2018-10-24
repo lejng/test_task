@@ -1,8 +1,11 @@
 package framework.selenium.elements;
 
 import framework.selenium.BaseEntity;
+import framework.utils.PropertyHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class BaseElement extends BaseEntity {
     protected By locator;
@@ -34,6 +37,7 @@ public abstract class BaseElement extends BaseEntity {
 
     public void click(){
         loggerHelper.info(String.format("Element %s '%s' :: clicking...", getElementType(), name));
+        waitUntilClickable();
         getElement().click();
     }
 
@@ -57,5 +61,10 @@ public abstract class BaseElement extends BaseEntity {
 
     public boolean isSelected(){
         return getElement().isSelected();
+    }
+
+    public void waitUntilClickable(){
+        new WebDriverWait(driver, PropertyHelper.getIntProperty(PropertyHelper.IMPLICITLY_WAIT))
+                .until(ExpectedConditions.elementToBeClickable(getElement()));
     }
 }

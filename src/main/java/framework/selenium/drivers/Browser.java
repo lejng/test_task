@@ -5,8 +5,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 public class Browser {
     private static Browser instance;
@@ -58,5 +58,13 @@ public class Browser {
 
     public void close(){
         driver.quit();
+    }
+
+    public void switchToNewTab(){
+        String currentTab = driver.getWindowHandle();
+        int firstElementNumber = 0;
+        String newTab = driver.getWindowHandles().stream()
+                .filter( tab -> !tab.equals(currentTab)).collect(Collectors.toList()).get(firstElementNumber);
+        driver.switchTo().window(newTab);
     }
 }

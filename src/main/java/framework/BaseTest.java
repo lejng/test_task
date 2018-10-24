@@ -10,13 +10,16 @@ public abstract class BaseTest extends BaseEntity {
     @Test
     public void xTest() throws Throwable {
         Class<? extends BaseTest> currentClass = this.getClass();
+        loggerHelper.logStart(currentClass.getName());
         try {
-            loggerHelper.logStart(currentClass.getName());
             runTest();
-            loggerHelper.getInstance().logEnd(currentClass.getName());
+            loggerHelper.logPass();
         } catch (Exception | AssertionError e) {
             loggerHelper.error(e.getMessage());
+            loggerHelper.logFail();
             throw e;
+        }finally {
+            loggerHelper.logEnd(currentClass.getName());
         }
     }
 }

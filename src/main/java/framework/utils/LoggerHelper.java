@@ -7,6 +7,8 @@ public class LoggerHelper {
     private final Logger log = Logger.getLogger(LoggerHelper.class);
     protected static final String END_TEST = "END TEST";
     protected static final String START_TEST = "START TEST";
+    protected static final String PASS = "TEST PASS";
+    protected static final String FAIL = "TEST FAIL";
     protected static final String STEP_NAME = "====================== %s ======================";
     protected static final String SEPARATOR = "================================================";
 
@@ -27,6 +29,14 @@ public class LoggerHelper {
 
     public void error(String message){
         log.error(message);
+    }
+
+    public void logFail(){
+        log.error(FAIL);
+    }
+
+    public void logPass(){
+        log.info(PASS);
     }
 
     public void logEnd(String testName){

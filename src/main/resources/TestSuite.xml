@@ -2,8 +2,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="TutBY Suite" verbose="1">
     <test name="TutBy">
-        <parameter name="login" value=""/>
-        <parameter name="password" value=""/>
+        <parameter name="login" value="leonid.mishuck@tut.by"/>
+        <parameter name="password" value="password1"/>
+        <parameter name="expectedCountMessages" value="2"/>
         <classes>
             <class name="tests.TutByTest" />
         </classes>
