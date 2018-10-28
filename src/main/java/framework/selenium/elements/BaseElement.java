@@ -43,12 +43,16 @@ public abstract class BaseElement extends BaseEntity {
 
     public String getText(){
         loggerHelper.info(String.format("Element %s '%s' :: getting text...", getElementType(), name));
-        return getElement().getText();
+        String text = getElement().getText();
+        loggerHelper.info(String.format("Element %s '%s' :: text = '%s'", getElementType(), name, text));
+        return text;
     }
 
     public String getAttribute(String attribute){
         loggerHelper.info(String.format("Element %s '%s' :: getting attribute '%s' ...", getElementType(), name, attribute));
-        return getElement().getAttribute(attribute);
+        String attributeValue = getElement().getAttribute(attribute);
+        loggerHelper.info(String.format("Element %s '%s' :: value of attribute '%s' = '%s'", getElementType(), name, attribute, attributeValue));
+        return attributeValue;
     }
 
     public boolean isEnable(){
